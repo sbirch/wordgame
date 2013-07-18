@@ -1,15 +1,31 @@
-var http = require('http'); // this is new
+var http = require('http');
 var express = require('express');
 var app = express();
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
 
 app.use(express.static(__dirname + '/static'));
 
-var server = http.createServer(app); // this is new
+function WordGame(){
+	this.p1 = null;
+	this.p2 = null;
+}
 
-// add socket.io
-var io = require('socket.io').listen(server);
+WordGame.prototype.join = function(){
+	
+}
 
-// your server code here
 
-// changed from *app*.listen(8080);
+
+io.sockets.on('connection', function(socket){
+	console.log('connected!')
+
+	socket.emit('handshake', 'Hello, world!')
+    
+    socket.on('disconnect', function(){
+        console.log('disconnect!', arguments);
+    });
+});
+
+
 server.listen(9090);

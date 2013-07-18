@@ -3,14 +3,19 @@
 <head>
 	<title>Wordgame.</title>
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 <body>
 	Hello, world!
 
 	<script type="text/javascript">
-	var socket = io.connect();
-
-	// the rest of your client-side scripting here...
+	$(function(){
+		var socket = io.connect();
+		socket.on('handshake', function(m){
+			console.log(m);
+		});
+	});
 	</script>
 </body>
 </html>
