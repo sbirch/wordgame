@@ -12,9 +12,9 @@
 	<script type="text/javascript">
 	$(function(){
 		var socket = io.connect();
-		socket.on('handshake', function(m){
-			console.log(m);
-		});
+		socket.emit('join', window.location.hash.substring(1), function(r){
+			console.log(r)
+		})
 	});
 	</script>
 </body>
